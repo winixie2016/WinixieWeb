@@ -1,0 +1,42 @@
+<style>
+
+body {
+    background-image: url("main_backn.jpg");
+	background-repeat: no-repeat;
+}
+
+table, td, th {
+    border: 1px solid black;
+}
+table {
+    border-collapse: collapse;
+    width: 300px;
+}
+th {
+    background-color: green;
+    color: white;
+    height: 15px;
+    text-align: left;
+    padding: 20px;
+}
+tr:nth-child(odd) {background-color: yellow} 
+tr:nth-child(even) {background-color: pink}
+tr:hover {
+   background-color: cyan;
+}
+td {
+    height: 15px;
+    vertical-align: center;
+    text-align: left;
+    padding: 5px;
+    border-bottom: 3px solid green;
+}
+
+current-demo {
+    background: #f0f0f0 none repeat scroll 0 0;
+    border-color: #d9d9d9;
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.3);
+    color: #aaa;
+}
+
+</style>

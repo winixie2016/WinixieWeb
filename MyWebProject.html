@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+    <title>Group Items in Drop Down</title>
+    <script src="angular.js"></script>
+    <script src="myscript.js"></script>
+	<link href="mystyle.css" rel="stylesheet" />   
+</head>
+<body>
+
+    <div id="todoPanel" class="panel" ng-controller="myCtrl">
+        <form name="myForm" novalidate>
+		
+            <div>
+                <div class="current-demo">
+                    <label>Select an author:</label>
+                    <select ng-model="selectedValue" 
+                            ng-options="item.name for item in mydata"
+							ng-change="updateData(selectedValue)">
+                        <option value="">(Pick One)</option>
+                    </select>
+                </div>
+            </div>           
+				
+            <div ng-if="selectedValue.name.length > -1">
+				
+				<p>Films of {{ selectedValue.name}}</p>
+
+				<table class="table" style=" width: 300px">
+					<thead>
+						<tr><th>#</th><th>Film</th></tr>
+					</thead>
+					<tr ng-repeat="item in characterData.films">
+						<td>{{$index + 1}}</td>
+						<td>{{item}}</td>						
+					</tr>
+				</table>				
+				
+				<br>Created on: {{ formatedDate }}
+			</div>
+        </form>
+    </div>
+</body>
+</html>
