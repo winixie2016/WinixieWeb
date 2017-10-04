@@ -1,0 +1,277 @@
+package general;
+
+/********** Amazon, 2017-10-03 ****************************************
+ 
+## Q. Write a method to reverse link list which could either be a singly link list or circular link list?
+input1 = a->b->c->null
+output1 = c->b->a->null
+
+input2 = a->b->c---->first node (circular list)
+output2 = c->b->a---->first node
+
+********************************************************************/
+
+class Node { 
+    int id;
+    Node next;
+    
+    public Node(int i) {
+        id = i;       
+        next = null;
+    }
+    
+    public int hashCode() {    
+        return id;
+    }
+    
+    public boolean equals(Object obj) {
+    	
+        if (obj == null)
+            return false;
+        
+        if (! (obj instanceof Node) )
+           return false;
+           
+        if (id == ((Node)obj).id)
+           return true;
+        else 
+           return false;
+    }
+}
+
+public class MyReverseLinkedList {
+    public Node head;
+    public Node tail;
+    
+    public MyReverseLinkedList() {
+        head = null;
+        tail = null;
+    }
+    
+    public MyReverseLinkedList(Node node) {
+        head = node;
+        tail = node;
+        head.next = null;
+        tail.next = null;
+    }
+    
+    // add to the end of the list;
+    public void add(Node node) {
+        
+        if (head == null) {
+            head = node;
+            head.next = null;
+            tail = head;
+            tail.next = null;
+            
+            return;
+        }
+        
+        tail.next = node;
+        tail = node;
+    }
+    
+    public Node reverseList() {
+        
+        if (head == null) 
+            return null;
+        
+        Node before = head;
+        Node after  = head;
+               
+        if (head.next == null)
+        	return head;
+               
+        after = head.next;
+        head.next = before;        
+        before.next = null;  
+        head = after;
+        
+        after = head.next;
+        head.next = before;           
+        
+        if (after == null)
+        	return head;
+        
+        int ctr = 0;
+        while (after.next != null) {
+              
+           head.next = before;
+           before = head;
+           
+           head = after;
+           after = after.next;
+           head.next = before;
+                     
+           ctr++;
+        }
+        
+        after.next = head;
+        
+        System.out.println("ctr : " + ctr);
+        
+        return after;
+    }
+    
+    public static void main(String[] args) {
+        
+    	MyReverseLinkedList myList = new MyReverseLinkedList();
+    	int HowManyElements = 3;
+    	
+        Node[] nodes = new Node[HowManyElements];
+        
+        for (int i = 0; i < HowManyElements; i++) {
+            nodes[i] = new Node(i);
+            myList.add(nodes[i]);
+        }
+        
+        Node tmp;
+        tmp = myList.head;
+        
+        while (tmp != null) {
+            
+           System.out.println(tmp.id);
+           tmp = tmp.next;
+        }
+        
+        System.out.println("---------- reverse now ---------------");
+        
+        tmp = myList.reverseList();
+        
+        if (tmp == null)
+        	System.out.println("tmp is null");
+        
+        while (tmp != null) {            
+            System.out.println(tmp.id);
+            tmp = tmp.next;
+         }
+    }
+}
+
+/************** output *****************
+0
+1
+2
+3
+4
+---------- reverse now ---------------
+ctr : 2
+4
+3
+2
+1
+0
+*************************************/
+
+/********** What I did in the interview *************
+
+## Q. Write a method to reverse link list which could either be a singly link list or circular link list?
+input1 = a->b->c->null
+output1 = c->b->a->null
+
+input2 = a->b->c---->first node (circular list)
+output2 = c->b->a---->first node
+
+class Node { 
+    int id;
+    Object value;
+    Node next;
+    
+    public Node(int i, Object o) {
+        id = i;
+        value = o;
+        next = null;
+    }
+    
+    public int hashCode() {
+    
+        return id;
+    }
+    
+    public boolean equals(Object obj) {
+        if (obj == null)
+            return false;
+        
+        if (! (obj instanceof Node) )
+           return false;
+           
+        if (id == (Node)obj.id)
+           return true;
+        else 
+           retur false;
+    }
+}
+
+public class MyList {
+    public Node head;
+    public Node tail;
+    
+    public MyList() {
+        head = null;
+        tail = null;
+    }
+    
+    public MyList(Node node) {
+        head = node;
+        tail = node;
+        head.next = null;
+        tail.next = null;
+    }
+    
+    // add to the end of the list;
+    public void add(Node node) {
+        
+        if (head == null) {
+            head = node;
+            head.next = null;
+            tail = head;
+            tail.next = null;
+            
+            return;
+        }
+        
+        tail.next = node;
+        tail = node;
+    }
+    
+    pubic Node reverseList() {
+        
+        if (head == null) 
+            return null;
+        
+        Node tmpTail = head;
+        tmpTail.next = null;
+        head = head.next;
+        tmpTail = head;
+       
+        while (head.next != null) {
+           
+           head.next = tmpTail;
+       
+           head = head.next;
+           tmpTail = head;
+        }
+        
+        return head;
+    }
+    
+    public static void main(String[] args) {
+        
+        MyList myList = new MyList();
+        Node[] nodes = new Node[3];
+        
+        for (int i = 0; i < 3; i++) {
+            nodes[i] = new Node(i);
+            myList.add(nodes[i]);
+        }
+        
+        Node tmp;
+        tmp = myList.head;
+        
+        while (tmp.next != null) {
+            
+           System.out.println()
+        }
+    }
+}
+******************************************/
